@@ -6,13 +6,16 @@
 {% block body %}
 	<div class="bg-black m-0">
 		<div class="container bg-dark bg-gradient mt-2">
-			<div class="text-center p-3 bg-dark bg-gradient text-white">
-				<div class="row align-items-start align-items-center">
-					<p class="text-start m-0 col-2">LeMauvaisCoin</p>
-					<button class="d-flex align-items-start btn btn-primary btn-lg col-2">Large button</button>
-					<button class="d-flex align-items-end btn btn-primary btn-lg">creer ton post</button>
+			<nav class="navbar bg-body-tertiary">
+				<div class="container-fluid">
+					<a class="navbar-brand">Navbar</a>
+					<form class="d-flex" role="search">
+						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+
+						<button class="btn btn-outline-success" type="submit"><a href="/post">poster</a></button>
+					</form>
 				</div>
-			</div>
+			</nav>
 
 			<div class="p-3 mb-2 bg-dark bg-gradient text-white text-center opacity-75">
 				<div class="album py-5 bg-dark bg-gradient">
