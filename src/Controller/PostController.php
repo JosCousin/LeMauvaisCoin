@@ -6,12 +6,14 @@ use App\Entity\Post;
 use App\Form\Post1Type;
 use App\Repository\PostRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/post')]
+#[IsGranted("ROLE_USER")]
 class PostController extends AbstractController
 {
     #[Route('/', name: 'app_post_index', methods: ['GET'])]
@@ -33,15 +35,15 @@ class PostController extends AbstractController
             if ($form->get('Picture')->getData() != null) {
                 $source = $form->get('Picture')->getData();
                 $extension = $source->guessExtension();
-                $nomFichier = 'test_' . uniqid() . '.' . $extension;
-                $source->move('img/Post/', $nomFichier);
-                $post->setPicture($nomFichier);
+                $nameFile = 'test_' . uniqid() . '.' . $extension;
+                $source->move('img/Post/', $nameFile);
+                $post->setPicture($nameFile);
             }
 
             $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('post/new.html.twig', [
@@ -65,9 +67,18 @@ class PostController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->get('Picture')->getData() != null) {
+                $source = $form->get('Picture')->getData();
+                $extension = $source->guessExtension();
+                $nameFile = 'test_' . uniqid() . '.' . $extension;
+                $source->move('img/Post/', $nameFile);
+                $post->setPicture($nameFile);
+            }
+
+            $entityManager->persist($post);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('post/edit.html.twig', [
@@ -84,6 +95,6 @@ class PostController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_post_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_home', [], Response::HTTP_SEE_OTHER);
     }
 }

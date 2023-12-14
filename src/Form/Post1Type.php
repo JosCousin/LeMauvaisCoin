@@ -17,16 +17,7 @@ class Post1Type extends AbstractType
             ->add('title')
             ->add('Picture', FileType::class, [
                 'label' => 'Picture',
-
-                // unmapped means that this field is not associated to any entity property
-                'mapped' => true,
-
-                // make it optional so you don't have to re-upload the PDF file
-                // every time you edit the Product details
                 'required' => false,
-
-                // unmapped fields can't define their validation using annotations
-                // in the associated entity, so you can use the PHP constraint classes
                 'constraints' => [
                     new File([
                         'maxSize' => '1024k',
