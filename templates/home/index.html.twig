@@ -1,54 +1,66 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!
+{% block stylesheets %}
+	<style></style>
+{% endblock %}
+
+{% block title %}Page d'acceuil
 {% endblock %}
 
 {% block body %}
-	<div class="bg-black m-0">
-		<div class="container bg-dark bg-gradient mt-2">
-			<nav class="navbar bg-body-tertiary">
-				<div class="container-fluid">
-					<a class="navbar-brand">Navbar</a>
-					<form class="d-flex" role="search">
-						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 
-						<button class="btn btn-outline-success" type="submit"><a href="/post">poster</a></button>
+	<header>
+		<div class="px-3 py-2 border-bottom mb-3">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-3">
+						<ul class="nav justify-content-center">
+							<li>
+								<img src="https://clipart-library.com/new_gallery/1-16054_longhorn-skull-images-cute-skull-clip-art.png" height="40" alt="Logo" loading="lazy"/>
+							</li>
+							<li>
+								{# <button type="button" class="btn btn-dark rounded-3" href="{{ path('app_post_new') }}">Poster</button> #}
+							</li>
+						</ul>
+					</div>
+					<form class="col-4 offset-1" role="search">
+						<div class="input-group">
+							<input type="search" class="form-control rounded-start-5 p-3 pt-2 pb-2" placeholder="Rechercher..." aria-label="Search">
+							<span class="input-group-text rounded-end-5">🔍</span>
+						</div>
+						<div class="col-2 offset-2">
+							<button type="button" class="btn btn-light text-dark rounded-3 me-2" href="{{ path('app_login') }}">
+								<small>Connexion</small>
+							</button>
+							<button type="button" class="btn btn-dark rounded-3" href="{{ path('app_register') }}">
+								<small>Inscription</small>
+							</button>
+						</div>
 					</form>
 				</div>
-			</nav>
-
-			<div class="p-3 mb-2 bg-dark bg-gradient text-white text-center opacity-75">
-				<div class="album py-5 bg-dark bg-gradient">
-					<div class="container bg-dark bg-gradient">
-
-						<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-							{% for post in posts %}
-								<div class="col">
-									<div class="card shadow-sm">
-										<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
-											<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-										</svg>
-										<div class="card-body">
-											<p class="card-text">{{post.title}}</p>
-											<div class="d-flex justify-content-between align-items-center">
-												<div class="btn-group">
-													<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-													<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-												</div>
-												<small class="text-body-secondary">9 mins</small>
-											</div>
-										</div>
-									</div>
-								</div>
-							{% endfor %}
-
-						</div>
-					</div>
-				</div>
-
 			</div>
 		</div>
-	</div>
+	</header>
+	{% for post in posts %}
+		<div class="col">
+			<div class="card shadow-sm">
+				<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
+					<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+				</svg>
+				<div class="card-body">
+					<p class="card-text">{{post.title}}</p>
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="btn-group">
+							<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+							<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+						</div>
+						<small class="text-body-secondary">9 mins</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+
 
 {% endblock %}
 
