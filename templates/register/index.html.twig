@@ -19,67 +19,54 @@
 				<p class="text-center">Bienvenue sur LeMauvaisCoin</p>
 
 				<p class="divider-text"></p>
+
+				{{ form_errors(registrationForm) }}
+
+				{{ form_start(registrationForm) }}
 				<form>
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="fa fa-user"></i>
-							</span>
-						</div>
-						<input name="" class="form-control" placeholder="Full name" type="text">
+					
+					<div class="form-group input-group flex">
+						{{ form_row(registrationForm.email, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Adresse mail'
+                                }
+                            }) }}
 					</div>
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="fa fa-envelope"></i>
-							</span>
-						</div>
-						<input name="" class="form-control" placeholder="Email address" type="email">
+				
+					<div class="form-group input-group">				
+						{{ form_row(registrationForm.mobile, {
+                                'attr': {
+                                    'class': 'form-control',
+                                    'placeholder': 'Numéro mobile'
+                                }
+                            }) }}
 					</div>
-					<!-- form-group// -->
+				
 					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="fa fa-phone"></i>
-							</span>
-						</div>
-
-						<input name="" class="form-control" placeholder="Phone number" type="text">
+						{{ form_row(registrationForm.plainPassword, {
+							'attr':{
+								'class': 'form-control',
+								'placeholder': 'Mot de passe'
+							},
+							'label': 'Mot de passe'
+                    }) }}
 					</div>
-					<!-- form-group// -->
-
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="fa fa-lock"></i>
-							</span>
-						</div>
-						<input class="form-control" placeholder="Create password" type="password">
-					</div>
-					<!-- form-group// -->
-					<div class="form-group input-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text">
-								<i class="fa fa-lock"></i>
-							</span>
-						</div>
-						<input class="form-control" placeholder="Repeat password" type="password">
-					</div>
-					<!-- form-group// -->
+	
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block">
 							Créer un compte
 						</button>
+						{{ form_end(registrationForm) }}
 					</div>
-					<!-- form-group// -->
+					
 					<p class="text-center">T'as déjà un compte ?
-						<a href="">Se connecter</a>
+						<a href="{{ path('app_login') }}">Se connecter</a>
 					</p>
 				</form>
 			</article>
 		</div>
-		<!-- card.// -->
+		
 
 	</div>
 	<!--container end.//-->

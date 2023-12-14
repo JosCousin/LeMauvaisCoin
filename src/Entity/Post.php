@@ -21,7 +21,7 @@ class Post
     private ?string $Description = null;
 
     #[ORM\Column]
-    private ?int $Price = null;
+    private ?string $Price = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $Picture = null;
@@ -55,12 +55,12 @@ class Post
         return $this;
     }
 
-    public function getPrice(): ?int
+    public function getPrice(): ?string
     {
         return $this->Price;
     }
 
-    public function setPrice(int $Price): static
+    public function setPrice(string $Price): static
     {
         $this->Price = $Price;
 

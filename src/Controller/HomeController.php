@@ -11,17 +11,16 @@ use Doctrine\Persistence\ManagerRegistry;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/home', name: 'app_home')]
     public function home(ManagerRegistry $doctrine): Response
     {
 
         $posts = $doctrine->getRepository(Post::class)->findAll();
         
-
-
         return $this->render('home/index.html.twig', [
             'posts' => $posts,
             'controller_name' => 'HomeController',
+            
         ]);
     }
 }

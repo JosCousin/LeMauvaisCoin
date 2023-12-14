@@ -7,54 +7,65 @@
 {% block body %}
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 
-
 	<div class="container">
 		<br>
 		<hr>
 
-
 		<div class="card bg-light">
 			<article class="card-body mx-auto" style="max-width: 400px;">
+				<h4 class="card-title mt-3 text-center">Connecte toi</h4>
+				<p class="text-center">Bienvenue sur LeMauvaisCoin</p>
 
 				<p class="divider-text"></p>
 				<form>
+					{% if error %}
+						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+					{% endif %}
 
-					<!-- form-group// -->
+					{% if app.user %}
+						<div class="mb-3">
+							You are logged in as
+							{{ app.user.userIdentifier }},
+							<a href="{{ path('app_logout') }}">Logout</a>
+						</div>
+					{% endif %}
+					
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">
 								<i class="fa fa-envelope"></i>
 							</span>
 						</div>
-						<input name="" class="form-control" placeholder="Email de connection" type="email">
+						<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
 					</div>
 
-					<!-- form-group// -->
 					<div class="form-group input-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text">
 								<i class="fa fa-lock"></i>
 							</span>
 						</div>
-						<input class="form-control" placeholder="Mot de passe" type="password">
+
+						<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Mot de passe" required>
 					</div>
-					<!-- form-group// -->
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary btn-block">
 							Se connecter
 						</button>
 					</div>
-					<!-- form-group// -->
+					
 					<p class="text-center">T'as pas un compte ?
-						<a href="">Créer un compte</a>
+						<a href="{{ path('app_register') }}">Créer un compte</a>
 					</p>
 				</form>
 			</article>
 		</div>
-		<!-- card.// -->
+		
 
 	</div>
-	<!--container end.//-->
+
 
 	<br><br>
 
