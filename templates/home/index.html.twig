@@ -12,7 +12,9 @@
 					<form class="d-flex" role="search">
 						<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 
-						<button class="btn btn-outline-success" type="submit"><a href="/post/new">poster</a></button>
+						<button class="btn btn-outline-success" type="submit">
+							<a href="/post/new">poster</a>
+						</button>
 					</form>
 				</div>
 			</nav>
@@ -25,15 +27,24 @@
 							{% for post in posts %}
 								<div class="col">
 									<div class="card shadow-sm">
-										<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveaspectratio="xMidYMid slice" focusable="false">
-											<title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-										</svg>
+										<img class="bd-placeholder-img card-img-top" src="{{ asset('/img/Post/' ~ post.picture) }}" width="100%" height="225" role="img">
+											<rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">{{post.title}}</text>
+										</img>
 										<div class="card-body">
-											<p class="card-text">{{post.title}}</p>
+											<p class="card-text break">{{post.description}}</p>
 											<div class="d-flex justify-content-between align-items-center">
 												<div class="btn-group">
-													<button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-													<button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+													<a href="/post/{{post.id}}/show">
+														<button class="btn btn-outline-success" type="submit">
+															Voir
+														</button>
+													</a>
+
+													<a href="/post/{{post.id}}/edit">
+														<button class="btn btn-outline-secondary" type="submit">
+															Modifier
+														</button>
+													</a>
 												</div>
 												<small class="text-body-secondary">9 mins</small>
 											</div>
